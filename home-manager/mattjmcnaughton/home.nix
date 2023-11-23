@@ -106,5 +106,9 @@
     ];
   };
 
+  programs.fzf = {
+    enable = true;
+  };
+
   systemd.user.startServices = "sd-switch";
 }
