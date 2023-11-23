@@ -30,7 +30,7 @@
     nixosConfigurations = {
       wilbur = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [ 
+        modules = [
           ./machines/wilbur/configuration.nix
           agenix.nixosModules.default
         ];
@@ -43,7 +43,7 @@
 
         extraSpecialArgs = {inherit inputs;};
 
-        modules = [ 
+        modules = [
           ./home-manager/mattjmcnaughton/home.nix
           agenix.homeManagerModules.default
         ];
@@ -52,15 +52,15 @@
 
     # From https://github.com/NixOS/templates/blob/master/go-hello/flake.nix
     devShells = forAllSystems (system:
-      let 
+      let
         pkgs = nixpkgsFor.${system};
       in
       {
         default = pkgs.mkShell {
           # If we need `agenix` cli in bootstrap, can just do `nix run github:ryantm/agenix -- CMD`.
-          buildInputs = [ 
+          buildInputs = [
             # If we try and use `with pkgs` and then refer to `home-manager`, we run into errors because `home-manager` is already defined...
-            pkgs.home-manager 
+            pkgs.home-manager
             pkgs.just
             pkgs.vim
             pkgs.git

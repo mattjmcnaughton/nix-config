@@ -8,4 +8,3 @@ switch-home-manager username=username hostname=hostname:
 	home-manager switch --flake '.#{{username}}@{{hostname}}'
 
 switch-all: switch-machine switch-home-manager
-

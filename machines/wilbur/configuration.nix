@@ -8,7 +8,7 @@
   ...
 }: {
   imports =
-    [ 
+    [
       # If desired, can import pieces (i.e. `./users.nix`...)
 
       # Include the results of the hardware scan.
