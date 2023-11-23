@@ -74,8 +74,28 @@
     enable = true;
   };
 
+  # Configuration parameters listed here:
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.tmux.enable
   programs.tmux = {
     enable = true;
+
+    prefix = "C-a";
+
+    terminal = "screen-256color";
+
+    keyMode = "vi";
+    mouse = true;
+
+    baseIndex = 1;
+
+    sensibleOnTop = true; # https://github.com/tmux-plugins/tmux-sensible
+
+    extraConfig = ''
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+    '';
   };
 
   programs.direnv = {
