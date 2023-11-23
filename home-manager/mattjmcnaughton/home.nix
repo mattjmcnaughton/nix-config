@@ -21,43 +21,45 @@
     username = "mattjmcnaughton";
     homeDirectory = "/home/mattjmcnaughton";
 
-    packages = with pkgs; [
-      bitwarden-cli
-      docker-compose
-      ffmpeg
-      libreoffice-qt  # Because using KDE.
-      just
-      obsidian
-      parallel
-      podman-compose
-      spotify
-      telegram-desktop
+    packages = with pkgs;
+      [
+        bitwarden-cli
+        docker-compose
+        ffmpeg
+        libreoffice-qt # Because using KDE.
+        just
+        obsidian
+        parallel
+        podman-compose
+        spotify
+        telegram-desktop
 
-      # TODO: Explore more...
-      pre-commit
-      fd  # https://github.com/sharkdp/fd
-      alejandra
-      bat
-      gh
-      htop
-      jq
-      ripgrep
-      tree
-      watch
-      exa
-      unzip
+        # TODO: Explore more...
+        pre-commit
+        fd # https://github.com/sharkdp/fd
+        alejandra
+        bat
+        gh
+        htop
+        jq
+        ripgrep
+        tree
+        watch
+        exa
+        unzip
 
-      tailscale
-      chromium
-      firefox
-      zathura
+        tailscale
+        chromium
+        firefox
+        zathura
 
-      zoom-us
+        zoom-us
 
-      # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
-    ] ++ [
-      inputs.agenix.packages.x86_64-linux.default
-    ];
+        # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
+      ]
+      ++ [
+        inputs.agenix.packages.x86_64-linux.default
+      ];
 
     stateVersion = "23.05";
   };

@@ -8,3 +8,11 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
+
+-   repo: local
+    hooks:
+    -   id: alejandra
+        name: alejandra
+        entry: alejandra
+        language: system
+        files: \.nix$

@@ -1,5 +1,4 @@
 # This is the systems configuration file.
-
 {
   inputs,
   lib,
@@ -7,13 +6,12 @@
   pkgs,
   ...
 }: {
-  imports =
-    [
-      # If desired, can import pieces (i.e. `./users.nix`...)
+  imports = [
+    # If desired, can import pieces (i.e. `./users.nix`...)
 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs = {
     config = {
@@ -36,7 +34,7 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  boot.loader.grub.enableCryptodisk=true;
+  boot.loader.grub.enableCryptodisk = true;
 
   boot.initrd.luks.devices."luks-009f6f79-8a93-49da-80ff-9ab56c4a5bed".keyFile = "/crypto_keyfile.bin";
 
@@ -108,7 +106,7 @@
   users.users.mattjmcnaughton = {
     isNormalUser = true;
     description = "mattjmcnaughton";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [];
   };
 
@@ -122,13 +120,13 @@
   ];
 
   environment.variables = {
-    EDITOR = "vim";  # Across the entire system, set vim as the editor.
+    EDITOR = "vim"; # Across the entire system, set vim as the editor.
   };
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
 
-  virtualisation.oci-containers.backend = "podman";  # Could also be Docker...
+  virtualisation.oci-containers.backend = "podman"; # Could also be Docker...
   virtualisation.oci-containers.containers = {
     nginx = {
       image = "nginx:stable";
