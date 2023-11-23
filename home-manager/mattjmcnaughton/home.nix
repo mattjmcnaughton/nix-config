@@ -32,7 +32,29 @@
       podman-compose
       spotify
       telegram-desktop
-      terraform
+
+      # TODO: Explore more...
+      pre-commit
+      fd  # https://github.com/sharkdp/fd
+      alejandra
+      bat
+      gh
+      htop
+      jq
+      ripgrep
+      tree
+      watch
+      exa
+      unzip
+
+      tailscale
+      chromium
+      firefox
+      zathura
+
+      zoom-us
+
+      # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
     ] ++ [
       inputs.agenix.packages.x86_64-linux.default
     ];
@@ -54,14 +76,32 @@
     enable = true;
   };
 
+  programs.direnv = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "mattjmcnaughton";
     userEmail = "me@mattjmcnaughton.com";
+    
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.vim = {
     enable = true;
+  };
+
+  programs.alacritty = {
+    enable = true;
+  };
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+    ];
   };
 
   systemd.user.startServices = "sd-switch";
