@@ -116,8 +116,16 @@
     enable = true;
   };
 
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.alacritty.enable
   programs.alacritty = {
     enable = true;
+
+    settings = {
+      env.TERM = "xterm-256color";
+      env.WINIT_X11_SCALE_FACTOR = "1.00"; # TBD if can delete this post switch to Wayland.
+      font.size = 8;
+      cursor.style = "beam";
+    };
   };
 
   programs.vscode = {
