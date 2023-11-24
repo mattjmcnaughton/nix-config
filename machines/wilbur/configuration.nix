@@ -112,11 +112,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  #
+  # The vast, vast majority of packages should be installed on a user specific basis in home-manager.
   environment.systemPackages = with pkgs; [
-    wget
     curl
-    silver-searcher
-    ncdu
+    ripgrep
   ];
 
   environment.variables = {
@@ -125,14 +125,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
-
-  virtualisation.oci-containers.backend = "podman"; # Could also be Docker...
-  virtualisation.oci-containers.containers = {
-    nginx = {
-      image = "nginx:stable";
-      ports = ["8080:80"];
-    };
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

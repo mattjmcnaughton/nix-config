@@ -55,6 +55,8 @@
 
         zoom-us
 
+        # TODO: Need a tool for managing clipboard.
+
         # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
       ]
       ++ [
@@ -66,8 +68,71 @@
 
   programs.home-manager.enable = true;
 
+  # Configuration parameters listed here:
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.bash.enable
   programs.bash = {
     enable = true;
+
+    sessionVariables = {
+      EDITOR = "vim";
+    };
+
+    initExtra = ''
+      __blue="\033[0;36m"
+      __yellow="\033[0;33m"
+      __nc="\033[0m"
+
+      __parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+      }
+
+      export PS1="\h:''${__blue}\W''${__nc}''${__yellow}\$(__parse_git_branch) ''${__nc}\$ "
+    '';
+
+    shellAliases = {
+      ls = "exa";
+      ag = "rg";
+      more = "bat";
+
+      # TODO: Set up a alias for pbcopy/xclip/...
+    };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "mattjmcnaughton";
+    userEmail = "me@mattjmcnaughton.com";
+
+    ignores = [
+      "*.swp"
+    ];
+
+    #signing = {
+    # Will change from machine to machine... based on the PGP subkey built for `signing`...
+    #key = "B296E12A331AF446!";
+    #signByDefault = true;
+    #};
+
+    aliases = {
+      ff = "merge --ff-only";
+    };
+
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+  };
+
+  programs.gpg = {
+    enable = true;
+
+    # Will us gpg2 by default... don't need to specify a specific package version.
+
+    # TODO: Copy the gpg-helper script to ... somewhere...
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "tty";
   };
 
   programs.firefox = {
@@ -102,16 +167,6 @@
     enable = true;
   };
 
-  programs.git = {
-    enable = true;
-    userName = "mattjmcnaughton";
-    userEmail = "me@mattjmcnaughton.com";
-
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
-
   programs.vim = {
     enable = true;
   };
@@ -124,7 +179,6 @@
       env.TERM = "xterm-256color";
       env.WINIT_X11_SCALE_FACTOR = "1.00"; # TBD if can delete this post switch to Wayland.
       font.size = 8;
-      cursor.style = "beam";
     };
   };
 
