@@ -167,8 +167,44 @@
     enable = true;
   };
 
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.vim.enable
   programs.vim = {
     enable = true;
+
+    defaultEditor = true;
+
+    # Custom .vimrc lines...
+    #
+    # NOT stored in `~/.vimrc` or `~/.config`.
+    # Can run `:scriptnames` to find the current `vimrc`... its part of the
+    # nix-store.
+    #
+    # This is actually cool, because I _think_ it means that my `shell.nix`
+    # could define per project vims, including specific config, plugins, etc...
+    #
+    # This ability would allow fancier "per-project" vims and my base vim to
+    # stay quite simple.
+    extraConfig = builtins.readFile ./dotfiles/vimrc;
+
+    # Search via `nix-env -f '<nixpkgs>' -qaP -A vimPlugins
+    plugins = [
+      # TODO: Review all of these plugins...
+
+      # TODO: Set-up shortcuts for fzf-vim that mirror `ctrl-p` and `ag`.
+      pkgs.vimPlugins.fzf-vim
+      pkgs.vimPlugins.vim-commentary
+
+      # TODO: Additional plugins such as:
+      # ale (linters)
+      # Language specific plugins (i.e. for python, Go... but also could be per-project...)
+      # Auto-completion/IntelliSense
+      # Snippets
+      # vim-fugitive
+      # EasyAlign
+      # Stuff from `junegunn` and `tpope`
+
+      # TODO: Look at https://github.com/mitchellh/nixos-config/blob/main/users/mitchellh/home-manager.nix for plugin ideas.
+    ];
   };
 
   # https://nix-community.github.io/home-manager/options.html#opt-programs.alacritty.enable
