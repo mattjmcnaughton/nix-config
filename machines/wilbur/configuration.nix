@@ -123,6 +123,10 @@
     EDITOR = "vim"; # Across the entire system, set vim as the editor.
   };
 
+  # Necessary for configuring Sway using Home Manager.
+  # https://nixos.wiki/wiki/Sway.
+  security.polkit.enable = true;
+
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
 

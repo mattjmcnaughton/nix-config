@@ -55,7 +55,9 @@
 
         zoom-us
 
-        # TODO: Need a tool for managing clipboard.
+        # sway/wayland tools (that don't have `programs/services`)
+        wl-clipboard
+        wlr-randr # TODO: Determine if better tool we could use.
 
         # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
       ]
@@ -225,6 +227,76 @@
   };
 
   programs.fzf = {
+    enable = true;
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+
+    config = {
+      modifier = "Mod1"; # Left alt key...
+
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      menu = "${pkgs.wofi}/bin/wofi --show run";
+
+      input = {
+        # Get the "ids" via running `swaymsg -t get_inputs`
+        #
+        # Anker mouse
+        "1578:16642:MOSART_Semi._2.4G_Wireless_Mouse" = {
+          natural_scroll = "enabled";
+        };
+
+        # Thinkpad/XPS13 keyboard...
+        "1:1:AT_Translated_Set_2_keyboard" = {
+          xkb_options = "caps:swapescape";
+        };
+      };
+
+      # TODO: Define output rules...
+
+      # TODO: Support wallpaper
+
+      # TODO: add `startup` config -
+      # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.config.startup.
+    };
+
+    # TODO: Should `wrapperFeatures.gtk = true`?
+
+    # TODO: Confirm want to store all as `config` file...
+    extraConfig = builtins.readFile ./dotfiles/sway/config;
+  };
+
+  programs.swaylock = {
+    enable = true;
+
+    # PAM should be configured by default - see
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.swaylock.enable.
+  };
+
+  services.mako = {
+    enable = true;
+  };
+
+  services.swayidle = {
+    enable = true;
+
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+    ];
+
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
+      }
+    ];
+  };
+
+  programs.wofi = {
     enable = true;
   };
 

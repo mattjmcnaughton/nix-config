@@ -1,0 +1,11 @@
+# TODO: Can these also be defined in `config.keybindings` in `home.nix`?
+
+### Useful shortcuts
+bindsym Mod1+c exec firefox
+bindsym Mod1+m exec spotify
+
+# TODO: Brightness/volume control...
+
+# Shortcut to lock the screen
+# TODO: Add wallpaper to the lockscreen (i.e. -i `$WALLPAPER`).
+bindsym Mod1+z exec swaylock
