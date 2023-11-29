@@ -49,15 +49,19 @@
         unzip
 
         tailscale
+
         chromium
         firefox
+
         zathura
+        feh
 
         zoom-us
 
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
         wlr-randr # TODO: Determine if better tool we could use.
+        shotman # TODO: Determine if there's a better screen-capture tool.
 
         # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
       ]
@@ -230,6 +234,9 @@
     enable = true;
   };
 
+  # Copy the wallpaper image to `~/.wallpaper.jpg`.
+  home.file.".wallpaper.jpg".source = ./assets/bear-wallpaper-1920-1080.jpg;
+
   wayland.windowManager.sway = {
     enable = true;
 
@@ -253,9 +260,11 @@
         };
       };
 
-      # TODO: Define output rules...
-
-      # TODO: Support wallpaper
+      output = {
+        "*" = {
+          bg = "~/.wallpaper.jpg fill";
+        };
+      };
 
       # TODO: add `startup` config -
       # https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.config.startup.
@@ -263,7 +272,7 @@
 
     # TODO: Should `wrapperFeatures.gtk = true`?
 
-    # TODO: Confirm want to store all as `config` file...
+    # TODO: Can we move some (all) of this into the home-manager config...
     extraConfig = builtins.readFile ./dotfiles/sway/config;
   };
 

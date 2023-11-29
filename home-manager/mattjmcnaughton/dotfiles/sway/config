@@ -7,5 +7,4 @@ bindsym Mod1+m exec spotify
 # TODO: Brightness/volume control...
 
 # Shortcut to lock the screen
-# TODO: Add wallpaper to the lockscreen (i.e. -i `$WALLPAPER`).
-bindsym Mod1+z exec swaylock
+bindsym Mod1+z exec swaylock -i ~/.wallpaper.jpg
