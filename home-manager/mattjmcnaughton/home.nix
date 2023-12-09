@@ -26,7 +26,7 @@
         bitwarden-cli
         docker-compose
         ffmpeg
-        libreoffice-qt # Because using KDE.
+        libreoffice
         just
         obsidian
         parallel
@@ -45,7 +45,7 @@
         ripgrep
         tree
         watch
-        exa
+        eza
         unzip
 
         tailscale
@@ -96,7 +96,7 @@
     '';
 
     shellAliases = {
-      ls = "exa";
+      ls = "eza";
       ag = "rg";
       more = "bat";
 
