@@ -28,17 +28,17 @@
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
-      wilbur = nixpkgs.lib.nixosSystem {
+      armadillo = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./machines/wilbur/configuration.nix
+          ./machines/armadillo/configuration.nix
           agenix.nixosModules.default
         ];
       };
     };
 
     homeConfigurations = {
-      "mattjmcnaughton@wilbur" = home-manager.lib.homeManagerConfiguration {
+      "mattjmcnaughton@armadillo" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
         extraSpecialArgs = {inherit inputs;};

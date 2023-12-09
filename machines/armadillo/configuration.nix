@@ -38,7 +38,7 @@
 
   boot.initrd.luks.devices."luks-e4d6d5a4-5687-442b-a107-d69a400b094d".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "wilbur"; # Define your hostname.
+  networking.hostName = "armadillo"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
