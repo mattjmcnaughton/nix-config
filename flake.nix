@@ -35,10 +35,29 @@
           agenix.nixosModules.default
         ];
       };
+
+      beaver = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./machines/beaver/configuration.nix
+          agenix.nixosModules.default
+        ];
+      };
     };
 
     homeConfigurations = {
       "mattjmcnaughton@armadillo" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+        extraSpecialArgs = {inherit inputs;};
+
+        modules = [
+          ./home-manager/mattjmcnaughton/home.nix
+          agenix.homeManagerModules.default
+        ];
+      };
+
+      "mattjmcnaughton@beaver" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
         extraSpecialArgs = {inherit inputs;};
