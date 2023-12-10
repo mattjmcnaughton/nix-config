@@ -113,11 +113,10 @@
       "*.swp"
     ];
 
-    #signing = {
-    # Will change from machine to machine... based on the PGP subkey built for `signing`...
-    #key = "B296E12A331AF446!";
-    #signByDefault = true;
-    #};
+    signing = {
+      key = "BC530981A9A1CC9D";
+      signByDefault = true;
+    };
 
     aliases = {
       ff = "merge --ff-only";
