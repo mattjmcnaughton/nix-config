@@ -48,10 +48,10 @@
         eza
         unzip
 
-        tailscale
-
         chromium
         firefox
+
+        awscli2 # could use `programs.awscli`, but would need a different mechanism for specifying creds.
 
         zathura
         feh

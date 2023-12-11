@@ -107,6 +107,8 @@
   environment.systemPackages = with pkgs; [
     curl
     ripgrep
+
+    tailscale # Install at a system level...
   ];
 
   environment.variables = {
@@ -121,6 +123,8 @@
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
+
+  services.tailscale.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
