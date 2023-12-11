@@ -253,6 +253,11 @@
           natural_scroll = "enabled";
         };
 
+        # Dell XPS mouse
+        "*TouchPad" = {
+          natural_scroll = "enabled";
+        };
+
         # Thinkpad/XPS13 keyboard...
         "1:1:AT_Translated_Set_2_keyboard" = {
           xkb_options = "caps:swapescape";
