@@ -43,6 +43,14 @@
           agenix.nixosModules.default
         ];
       };
+
+      cow = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./machines/cow/configuration.nix
+          agenix.nixosModules.default
+        ];
+      };
     };
 
     homeConfigurations = {
@@ -58,6 +66,17 @@
       };
 
       "mattjmcnaughton@beaver" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+        extraSpecialArgs = {inherit inputs;};
+
+        modules = [
+          ./home-manager/mattjmcnaughton/home.nix
+          agenix.homeManagerModules.default
+        ];
+      };
+
+      "mattjmcnaughton@cow" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
         extraSpecialArgs = {inherit inputs;};
