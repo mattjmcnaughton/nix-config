@@ -303,7 +303,7 @@
 
     timeouts = [
       {
-        timeout = 300;
+        timeout = 3600;  # 1 hour
         command = "${pkgs.swaylock}/bin/swaylock -fF";
       }
     ];
