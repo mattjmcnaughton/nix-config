@@ -13,6 +13,7 @@
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
         "electron-24.8.6"
+        "electron-25.9.0"
       ];
     };
   };
@@ -303,7 +304,7 @@
 
     timeouts = [
       {
-        timeout = 3600;  # 1 hour
+        timeout = 3600; # 1 hour
         command = "${pkgs.swaylock}/bin/swaylock -fF";
       }
     ];
