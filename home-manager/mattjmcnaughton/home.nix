@@ -64,6 +64,12 @@
         wlr-randr # TODO: Determine if better tool we could use.
         shotman # TODO: Determine if there's a better screen-capture tool.
 
+        # There's probably a more declarative way we could do this... but for
+        # now, I'm not super concerned.
+        #
+        # Working from https://www.ertt.ca/nix/shell-scripts/
+        (writeScriptBin "gpg-helper.sh" (builtins.readFile ./scripts/gpg-helper.sh))
+
         # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
       ]
       ++ [
