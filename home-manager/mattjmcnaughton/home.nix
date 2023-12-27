@@ -255,7 +255,7 @@
         };
 
         # Dell XPS mouse
-        "*TouchPad" = {
+        "1739:30383:DELL07E6:00_06CB:76AF_Touchpad" = {
           natural_scroll = "enabled";
         };
 
