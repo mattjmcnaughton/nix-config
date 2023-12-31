@@ -48,6 +48,7 @@
         watch
         eza
         unzip
+        lsof
 
         chromium
         firefox
