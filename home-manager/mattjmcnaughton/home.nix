@@ -53,14 +53,14 @@
         chromium
         firefox
 
-        awscli2 # could use `programs.awscli`, but would need a different mechanism for specifying creds.
+        awscli2 # Could use `programs.awscli`, but would need a different mechanism for specifying creds.
 
         zathura
         feh
 
         zoom-us
 
-        tfswitch
+        tfswitch  # We need to install via `tfswitch -b ~/.local/bin/terraform` before we have Terraform available.
 
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
@@ -103,6 +103,12 @@
       }
 
       export PS1="\h:''${__blue}\W''${__nc}''${__yellow}\$(__parse_git_branch) ''${__nc}\$ "
+
+      # We will need to create ~/.local/bin if it doesn't exist.
+      # We do this for a place to store "custom" binaries (i.e. installed via
+      # `tfswitch`).
+      # todo: Determine if a better way to do it.
+      export PATH=$PATH:~/.local/bin
     '';
 
     shellAliases = {
