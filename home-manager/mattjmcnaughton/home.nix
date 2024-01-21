@@ -60,6 +60,8 @@
 
         zoom-us
 
+        tfswitch
+
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
         wlr-randr # TODO: Determine if better tool we could use.
