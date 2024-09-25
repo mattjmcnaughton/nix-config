@@ -153,7 +153,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "tty";
+    pinentryPackage = pkgs.pinentry-tty;
   };
 
   programs.firefox = {
@@ -239,14 +239,6 @@
     };
   };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      github.copilot
-      vscodevim.vim
-    ];
-  };
-
   programs.fzf = {
     enable = true;
   };
@@ -282,10 +274,8 @@
         };
       };
 
+      # TODO: Add background
       output = {
-        "*" = {
-          bg = "~/.wallpaper.jpg fill";
-        };
       };
 
       # TODO: add `startup` config -
