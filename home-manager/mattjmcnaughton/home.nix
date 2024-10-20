@@ -49,6 +49,7 @@
         eza
         unzip
         lsof
+        dig
 
         chromium
         firefox
