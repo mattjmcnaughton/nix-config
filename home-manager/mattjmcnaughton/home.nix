@@ -61,7 +61,7 @@
 
         zoom-us
 
-        tfswitch  # We need to install via `tfswitch -b ~/.local/bin/terraform` before we have Terraform available.
+        tfswitch # We need to install via `tfswitch -b ~/.local/bin/terraform` before we have Terraform available.
 
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
@@ -78,6 +78,9 @@
       ]
       ++ [
         inputs.agenix.packages.x86_64-linux.default
+      ]
+      ++ [
+        inputs.ghostty.packages.x86_64-linux.default
       ];
 
     stateVersion = "23.05";
@@ -229,17 +232,6 @@
     ];
   };
 
-  # https://nix-community.github.io/home-manager/options.html#opt-programs.alacritty.enable
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      env.TERM = "xterm-256color";
-      env.WINIT_X11_SCALE_FACTOR = "1.00"; # TBD if can delete this post switch to Wayland.
-      font.size = 8;
-    };
-  };
-
   programs.fzf = {
     enable = true;
   };
@@ -247,13 +239,16 @@
   # Copy the wallpaper image to `~/.wallpaper.jpg`.
   home.file.".wallpaper.jpg".source = ./assets/bear-wallpaper-1920-1080.jpg;
 
+  # Source ghostty config file
+  xdg.configFile."ghostty/config".source = ./dotfiles/ghostty/config;
+
   wayland.windowManager.sway = {
     enable = true;
 
     config = {
       modifier = "Mod1"; # Left alt key...
 
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${inputs.ghostty.packages.x86_64-linux.default}/bin/ghostty";
       menu = "${pkgs.wofi}/bin/wofi --show run";
 
       input = {
@@ -275,7 +270,7 @@
         };
       };
 
-      # TODO: Add background
+      # TODO: Specify background.
       output = {
       };
 
