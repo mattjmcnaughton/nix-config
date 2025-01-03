@@ -34,7 +34,7 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  boot.loader.grub.enableCryptodisk=true;
+  boot.loader.grub.enableCryptodisk = true;
 
   boot.initrd.luks.devices."luks-7dad9ef1-d824-4174-8b25-7db043582fc8".keyFile = "/crypto_keyfile.bin";
 
@@ -83,7 +83,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

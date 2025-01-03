@@ -52,7 +52,6 @@
         dig
 
         chromium
-        firefox
 
         awscli2 # Could use `programs.awscli`, but would need a different mechanism for specifying creds.
 
