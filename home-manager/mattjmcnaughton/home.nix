@@ -58,6 +58,8 @@
         zathura
         feh
 
+        pamixer # mixer for usage w/ pulseaudio (`pamixer --get-volume` and `pamixer --set-volume`)
+
         zoom-us
 
         tfswitch # We need to install via `tfswitch -b ~/.local/bin/terraform` before we have Terraform available.
