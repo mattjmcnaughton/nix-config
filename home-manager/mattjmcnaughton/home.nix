@@ -59,6 +59,7 @@
         feh
 
         pamixer # mixer for usage w/ pulseaudio (`pamixer --get-volume` and `pamixer --set-volume`)
+        bluetui # tui for bluetooth
 
         zoom-us
 
