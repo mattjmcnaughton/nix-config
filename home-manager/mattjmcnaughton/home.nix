@@ -4,7 +4,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  wallpaper = pkgs.copyPathToStore ./assets/wallpaper-happy-pug-1920-1080.jpg;
+in {
   # Could use imports to split up if I wanted...
 
   nixpkgs = {
@@ -239,7 +241,7 @@
   };
 
   # Copy the wallpaper image to `~/.wallpaper.jpg`.
-  home.file.".wallpaper.jpg".source = ./assets/bear-wallpaper-1920-1080.jpg;
+  home.file.".wallpaper.jpg".source = ./assets/wallpaper-sleeping-pug-1920-1080.jpg;
 
   # Source ghostty config file
   xdg.configFile."ghostty/config".source = ./dotfiles/ghostty/config;
@@ -272,8 +274,10 @@
         };
       };
 
-      # TODO: Specify background.
       output = {
+        "*" = {
+          bg = "${wallpaper} fill";
+        };
       };
 
       # TODO: add `startup` config -
