@@ -95,7 +95,7 @@
   users.users.mattjmcnaughton = {
     isNormalUser = true;
     description = "mattjmcnaughton";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "lxd"];
     packages = with pkgs; [];
   };
 
@@ -108,6 +108,9 @@
     ripgrep
 
     tailscale # Install at a system level...
+
+    lxd
+    lxc
   ];
 
   environment.variables = {
@@ -122,6 +125,34 @@
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
+
+  virtualisation.lxd.enable = true;
+  virtualisation.lxd.recommendedSysctlSettings = true;
+  # Enable lxcfs for better container support
+  virtualisation.lxc.lxcfs.enable = true;
+
+  # Set up networking for LXD
+  networking = {
+    bridges.lxdbr0 = {
+      interfaces = [];
+    };
+    firewall = {
+      trustedInterfaces = ["lxdbr0"];
+    };
+    nat = {
+      enable = true;
+      internalInterfaces = ["lxdbr0"];
+      externalInterface = "!*"; # any interface that isn't used for internal.
+    };
+  };
+
+  # Enable IP forwarding for container networking
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+  };
+
+  # Ensure nesting is enabled for Nix sandboxing in containers
+  virtualisation.lxc.defaultConfig = "lxc.include = ${pkgs.lxcfs}/share/lxc/config/common.conf.d/00-lxcfs.conf";
 
   services.tailscale.enable = true;
 

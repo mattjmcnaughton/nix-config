@@ -52,6 +52,7 @@ in {
         unzip
         lsof
         dig
+        wget
 
         chromium
 
@@ -77,6 +78,7 @@ in {
         #
         # Working from https://www.ertt.ca/nix/shell-scripts/
         (writeScriptBin "gpg-helper.sh" (builtins.readFile ./scripts/gpg-helper.sh))
+        (writeScriptBin "aws-mfa-auth.sh" (builtins.readFile ./scripts/aws-mfa-auth.sh))
 
         # Any dev-specific tools will go in a `shell.nix` or `flake.nix` dev profile.
       ]
