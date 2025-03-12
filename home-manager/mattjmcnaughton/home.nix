@@ -26,6 +26,10 @@ in {
 
     packages = with pkgs;
       [
+        # For now, manage neovim separately... (i.e. don't use
+        # `programs.neovim`).
+        neovim
+
         bitwarden-cli
         docker-compose
         ffmpeg
