@@ -54,6 +54,11 @@ in {
         dig
         wget
 
+        # Afaik, we just need to install the tools and ebpf should work
+        # out of the box.
+        bpftools
+        bcc
+
         chromium
 
         awscli2 # Could use `programs.awscli`, but would need a different mechanism for specifying creds.
