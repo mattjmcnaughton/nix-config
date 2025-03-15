@@ -75,7 +75,7 @@ in {
 
         zoom-us
 
-        tfswitch # We need to install via `tfswitch -b ~/.local/bin/terraform` before we have Terraform available.
+        tenv # Version manager for Terraform, OpenTofu, etc.
 
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
