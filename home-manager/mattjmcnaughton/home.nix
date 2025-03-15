@@ -135,6 +135,8 @@ in {
       ag = "rg";
       more = "bat";
 
+      terraform = "tofu";
+
       # TODO: Set up a alias for pbcopy/xclip/...
     };
   };
