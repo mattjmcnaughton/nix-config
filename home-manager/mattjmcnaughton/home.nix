@@ -44,7 +44,6 @@ in {
         # TODO: Explore more...
         pre-commit
         fd # https://github.com/sharkdp/fd
-        alejandra
         bat
         gh
         htop
@@ -75,7 +74,17 @@ in {
 
         zoom-us
 
+        alejandra
+        shellcheck
+
+        python312 # `uv` cannot manage python versions on Nix
+        uv
+
+        go # v1.23 as of NixOS 24.11
+
         tenv # Version manager for Terraform, OpenTofu, etc.
+
+        ollama
 
         # sway/wayland tools (that don't have `programs/services`)
         wl-clipboard
