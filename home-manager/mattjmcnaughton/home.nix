@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  wallpaper = pkgs.copyPathToStore ./assets/wallpaper-happy-pug-1920-1080.jpg;
+  wallpaper = pkgs.copyPathToStore ./assets/wallpaper-coding-pug-1920-1080.jpg;
 in {
   # Could use imports to split up if I wanted...
 
@@ -254,7 +254,6 @@ in {
       # vim-fugitive
       # EasyAlign
       # Stuff from `junegunn` and `tpope`
-
       # TODO: Look at https://github.com/mitchellh/nixos-config/blob/main/users/mitchellh/home-manager.nix for plugin ideas.
     ];
   };
@@ -263,8 +262,8 @@ in {
     enable = true;
   };
 
-  # Copy the wallpaper image to `~/.wallpaper.jpg`.
-  home.file.".wallpaper.jpg".source = ./assets/wallpaper-sleeping-pug-1920-1080.jpg;
+  # Copy the lock-screen image to `~/.lock-screen.jpg`.
+  home.file.".lock-screen.jpg".source = ./assets/wallpaper-coding-sleeping-pug-1920-1080.jpg;
 
   # Source ghostty config file
   xdg.configFile."ghostty/config".source = ./dotfiles/ghostty/config;
