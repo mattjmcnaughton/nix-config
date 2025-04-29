@@ -33,6 +33,7 @@ in {
         bitwarden-cli
         docker-compose
         ffmpeg
+        imagemagick
         libreoffice
         just
         obsidian
