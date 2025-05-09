@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = github:nixos/nixpkgs/nixos-24.11;
+    nixpkgs-unstable.url = github:nixos/nixpkgs/nixos-unstable;
 
     home-manager.url = github:nix-community/home-manager/release-24.11;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +15,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     agenix,
     ghostty,
@@ -29,6 +31,18 @@
 
     # Nixpkgs instantiated for supported system types.
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
+
+    # Support accessing unstable packages
+    overlay-unstable = final: prev: {
+      unstable = import nixpkgs-unstable {
+        system = prev.system;
+        # Copy the same config to allow unfree packages in unstable
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
+    };
   in {
     nixosConfigurations = {
       beaver = nixpkgs.lib.nixosSystem {
@@ -42,7 +56,7 @@
 
     homeConfigurations = {
       "mattjmcnaughton@beaver" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = nixpkgs.legacyPackages.x86_64-linux.extend overlay-unstable;
 
         extraSpecialArgs = {inherit inputs;};
 

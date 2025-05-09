@@ -26,10 +26,13 @@ in {
 
     packages = with pkgs;
       [
-        # For now, manage neovim separately... (i.e. don't use
-        # `programs.neovim`).
-        neovim
+        # Unstable
+        unstable.neovim
+        unstable.vscode
+        unstable.zed-editor
+        unstable.code-cursor
 
+        # Stable
         bitwarden-cli
         docker-compose
         ffmpeg
