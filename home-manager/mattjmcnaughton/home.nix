@@ -36,6 +36,7 @@ in {
         bitwarden-cli
         docker-compose
         ffmpeg
+        mpv
         imagemagick
         libreoffice
         just
