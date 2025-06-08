@@ -61,6 +61,8 @@ in {
         lsof
         dig
         wget
+        nmap
+        rpi-imager # Create raspberry pi images - run with `sudo -E`
 
         # Afaik, we just need to install the tools and ebpf should work
         # out of the box.
